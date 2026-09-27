@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>NOP — Soon.</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --background: #f7f7f5;
+        --foreground: #171717;
+        --muted: #82827e;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --background: #171717;
+          --foreground: #f7f7f5;
+          --muted: #aaa9a4;
+        }
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        min-height: 100vh;
+        min-height: 100dvh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        background: var(--background);
+        color: var(--foreground);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      main {
+        width: 100%;
+        padding: 24px;
+        text-align: center;
+      }
+
+      .barcode {
+        position: relative;
+        width: min(600px, 100%);
+        aspect-ratio: 2 / 1;
+        margin-inline: auto;
+      }
+
+      .bars {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .bars { filter: invert(1); }
+      }
+
+      .letters {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: var(--background);
+        font-size: clamp(56px, 24vw, 160px);
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        line-height: 1;
+        padding-left: 0.08em;
+      }
+
+      p {
+        margin: 28px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: 0.22em;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="barcode" role="img" aria-label="NOP">
+        <img class="bars" src="assets/NOP.svg" alt="" aria-hidden="true">
+        <div class="letters" aria-hidden="true">NOP</div>
+      </div>
+      <p>Soon.</p>
+    </main>
+  </body>
+</html>
