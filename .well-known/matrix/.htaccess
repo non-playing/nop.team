@@ -1,0 +1,7 @@
+# The public host currently identifies itself as nginx, but its 404 body looks
+# like Apache. This file takes effect ONLY if Apache serves this directory and
+# honors .htaccess. The hosting operator must verify the public response.
+ForceType application/json
+<IfModule mod_headers.c>
+    Header always set Access-Control-Allow-Origin "*"
+</IfModule>

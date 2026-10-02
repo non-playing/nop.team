@@ -1,0 +1,23 @@
+# OPERATOR TEMPLATE ONLY. This repository contains static site files; a push
+# cannot install this snippet in HostCreators' nginx configuration. Insert in
+# the HTTPS server block for matrix.nop.team after arranging an authenticated,
+# reachable tunnel/upstream. Replace the upstream URL marker with its real URL;
+# do not use greninja's public 80/443 (those belong to NetBird).
+#
+# A catch-all covers /_matrix, /_tuwunel, OIDC discovery and callbacks.
+location / {
+    client_max_body_size 100m;
+    proxy_pass __MATRIX_UPSTREAM_URL__;
+    # For an HTTPS upstream, verify its certificate and send SNI.
+    proxy_ssl_verify on;
+    proxy_ssl_server_name on;
+    proxy_http_version 1.1;
+    proxy_set_header Host matrix.nop.team;
+    proxy_set_header X-Forwarded-Host matrix.nop.team;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_read_timeout 600s;
+    proxy_send_timeout 600s;
+    proxy_buffering off;
+    proxy_request_buffering off;
+}
